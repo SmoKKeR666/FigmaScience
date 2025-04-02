@@ -1,0 +1,34 @@
+﻿<Page x:Class="FigmaScience.View.Pages.TestsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FigmaScience.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="700"
+      Title="TestsPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="500" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="Выберите тест для прохождения:" FontSize="30"/>
+        <ComboBox Grid.Row="4" Grid.Column="2" Name="TestCmb" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Button Grid.Row="6" Grid.Column="2" Content="Начать" FontSize="40" Name="StartBtn" Click="StartBtn_Click" Background="Orange"/>
+    </Grid>
+</Page>

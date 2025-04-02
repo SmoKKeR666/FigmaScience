@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище FigmaScienceModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FigmaScience">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDLessons" Type="int" />
+          <Property Name="IDTestResults" Type="int" />
+          <Property Name="IDTests" Type="int" />
+          <Property Name="IDUsers" Type="int" />
+        </EntityType>
+        <EntityType Name="Lessons">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HyperLink" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestResults">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User" Type="int" Nullable="false" />
+          <Property Name="Test" Type="int" Nullable="false" />
+          <Property Name="DateOfCompleting" Type="date" Nullable="false" />
+          <Property Name="Scores" Type="int" Nullable="false" />
+          <Property Name="Mark" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tests">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_FigmaScience_Lessons">
+          <End Role="Lessons" Type="Self.Lessons" Multiplicity="0..1" />
+          <End Role="FigmaScience" Type="Self.FigmaScience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lessons">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FigmaScience">
+              <PropertyRef Name="IDLessons" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FigmaScience_TestResults">
+          <End Role="TestResults" Type="Self.TestResults" Multiplicity="0..1" />
+          <End Role="FigmaScience" Type="Self.FigmaScience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestResults">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FigmaScience">
+              <PropertyRef Name="IDTestResults" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FigmaScience_Tests">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="0..1" />
+          <End Role="FigmaScience" Type="Self.FigmaScience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FigmaScience">
+              <PropertyRef Name="IDTests" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FigmaScience_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="FigmaScience" Type="Self.FigmaScience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FigmaScience">
+              <PropertyRef Name="IDUsers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestResults_Tests">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
+          <End Role="TestResults" Type="Self.TestResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestResults">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestResults_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="TestResults" Type="Self.TestResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestResults">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище FigmaScienceModelContainer">
+          <EntitySet Name="FigmaScience" EntityType="Self.FigmaScience" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lessons" EntityType="Self.Lessons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestResults" EntityType="Self.TestResults" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tests" EntityType="Self.Tests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FigmaScience_Lessons" Association="Self.FK_FigmaScience_Lessons">
+            <End Role="Lessons" EntitySet="Lessons" />
+            <End Role="FigmaScience" EntitySet="FigmaScience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FigmaScience_TestResults" Association="Self.FK_FigmaScience_TestResults">
+            <End Role="TestResults" EntitySet="TestResults" />
+            <End Role="FigmaScience" EntitySet="FigmaScience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FigmaScience_Tests" Association="Self.FK_FigmaScience_Tests">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="FigmaScience" EntitySet="FigmaScience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FigmaScience_Users" Association="Self.FK_FigmaScience_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FigmaScience" EntitySet="FigmaScience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestResults_Tests" Association="Self.FK_TestResults_Tests">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="TestResults" EntitySet="TestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestResults_Users" Association="Self.FK_TestResults_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TestResults" EntitySet="TestResults" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FigmaScienceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FigmaScienceEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FigmaScience" EntityType="FigmaScienceModel.FigmaScience" />
+          <EntitySet Name="Lessons" EntityType="FigmaScienceModel.Lessons" />
+          <EntitySet Name="TestResults" EntityType="FigmaScienceModel.TestResults" />
+          <EntitySet Name="Tests" EntityType="FigmaScienceModel.Tests" />
+          <EntitySet Name="Users" EntityType="FigmaScienceModel.Users" />
+          <AssociationSet Name="FK_FigmaScience_Lessons" Association="FigmaScienceModel.FK_FigmaScience_Lessons">
+            <End Role="Lessons" EntitySet="Lessons" />
+            <End Role="FigmaScience" EntitySet="FigmaScience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FigmaScience_TestResults" Association="FigmaScienceModel.FK_FigmaScience_TestResults">
+            <End Role="TestResults" EntitySet="TestResults" />
+            <End Role="FigmaScience" EntitySet="FigmaScience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FigmaScience_Tests" Association="FigmaScienceModel.FK_FigmaScience_Tests">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="FigmaScience" EntitySet="FigmaScience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FigmaScience_Users" Association="FigmaScienceModel.FK_FigmaScience_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FigmaScience" EntitySet="FigmaScience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestResults_Tests" Association="FigmaScienceModel.FK_TestResults_Tests">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="TestResults" EntitySet="TestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestResults_Users" Association="FigmaScienceModel.FK_TestResults_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TestResults" EntitySet="TestResults" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FigmaScience">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDLessons" Type="Int32" />
+          <Property Name="IDTestResults" Type="Int32" />
+          <Property Name="IDTests" Type="Int32" />
+          <Property Name="IDUsers" Type="Int32" />
+          <NavigationProperty Name="Lessons" Relationship="FigmaScienceModel.FK_FigmaScience_Lessons" FromRole="FigmaScience" ToRole="Lessons" />
+          <NavigationProperty Name="TestResults" Relationship="FigmaScienceModel.FK_FigmaScience_TestResults" FromRole="FigmaScience" ToRole="TestResults" />
+          <NavigationProperty Name="Tests" Relationship="FigmaScienceModel.FK_FigmaScience_Tests" FromRole="FigmaScience" ToRole="Tests" />
+          <NavigationProperty Name="Users" Relationship="FigmaScienceModel.FK_FigmaScience_Users" FromRole="FigmaScience" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Lessons">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HyperLink" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FigmaScience" Relationship="FigmaScienceModel.FK_FigmaScience_Lessons" FromRole="Lessons" ToRole="FigmaScience" />
+        </EntityType>
+        <EntityType Name="TestResults">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User" Type="Int32" Nullable="false" />
+          <Property Name="Test" Type="Int32" Nullable="false" />
+          <Property Name="DateOfCompleting" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Scores" Type="Int32" Nullable="false" />
+          <Property Name="Mark" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FigmaScience" Relationship="FigmaScienceModel.FK_FigmaScience_TestResults" FromRole="TestResults" ToRole="FigmaScience" />
+          <NavigationProperty Name="Tests" Relationship="FigmaScienceModel.FK_TestResults_Tests" FromRole="TestResults" ToRole="Tests" />
+          <NavigationProperty Name="Users" Relationship="FigmaScienceModel.FK_TestResults_Users" FromRole="TestResults" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Tests">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FigmaScience" Relationship="FigmaScienceModel.FK_FigmaScience_Tests" FromRole="Tests" ToRole="FigmaScience" />
+          <NavigationProperty Name="TestResults" Relationship="FigmaScienceModel.FK_TestResults_Tests" FromRole="Tests" ToRole="TestResults" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FigmaScience" Relationship="FigmaScienceModel.FK_FigmaScience_Users" FromRole="Users" ToRole="FigmaScience" />
+          <NavigationProperty Name="TestResults" Relationship="FigmaScienceModel.FK_TestResults_Users" FromRole="Users" ToRole="TestResults" />
+        </EntityType>
+        <Association Name="FK_FigmaScience_Lessons">
+          <End Type="FigmaScienceModel.Lessons" Role="Lessons" Multiplicity="0..1" />
+          <End Type="FigmaScienceModel.FigmaScience" Role="FigmaScience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lessons">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FigmaScience">
+              <PropertyRef Name="IDLessons" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FigmaScience_TestResults">
+          <End Type="FigmaScienceModel.TestResults" Role="TestResults" Multiplicity="0..1" />
+          <End Type="FigmaScienceModel.FigmaScience" Role="FigmaScience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestResults">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FigmaScience">
+              <PropertyRef Name="IDTestResults" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FigmaScience_Tests">
+          <End Type="FigmaScienceModel.Tests" Role="Tests" Multiplicity="0..1" />
+          <End Type="FigmaScienceModel.FigmaScience" Role="FigmaScience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FigmaScience">
+              <PropertyRef Name="IDTests" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FigmaScience_Users">
+          <End Type="FigmaScienceModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="FigmaScienceModel.FigmaScience" Role="FigmaScience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FigmaScience">
+              <PropertyRef Name="IDUsers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestResults_Tests">
+          <End Type="FigmaScienceModel.Tests" Role="Tests" Multiplicity="1" />
+          <End Type="FigmaScienceModel.TestResults" Role="TestResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestResults">
+              <PropertyRef Name="Test" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestResults_Users">
+          <End Type="FigmaScienceModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="FigmaScienceModel.TestResults" Role="TestResults" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestResults">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище FigmaScienceModelContainer" CdmEntityContainer="FigmaScienceEntities1">
+          <EntitySetMapping Name="FigmaScience">
+            <EntityTypeMapping TypeName="FigmaScienceModel.FigmaScience">
+              <MappingFragment StoreEntitySet="FigmaScience">
+                <ScalarProperty Name="IDUsers" ColumnName="IDUsers" />
+                <ScalarProperty Name="IDTests" ColumnName="IDTests" />
+                <ScalarProperty Name="IDTestResults" ColumnName="IDTestResults" />
+                <ScalarProperty Name="IDLessons" ColumnName="IDLessons" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lessons">
+            <EntityTypeMapping TypeName="FigmaScienceModel.Lessons">
+              <MappingFragment StoreEntitySet="Lessons">
+                <ScalarProperty Name="HyperLink" ColumnName="HyperLink" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestResults">
+            <EntityTypeMapping TypeName="FigmaScienceModel.TestResults">
+              <MappingFragment StoreEntitySet="TestResults">
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="Scores" ColumnName="Scores" />
+                <ScalarProperty Name="DateOfCompleting" ColumnName="DateOfCompleting" />
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="FigmaScienceModel.Tests">
+              <MappingFragment StoreEntitySet="Tests">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="FigmaScienceModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

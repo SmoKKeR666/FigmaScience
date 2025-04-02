@@ -1,0 +1,48 @@
+﻿<Page x:Class="FigmaScience.View.Pages.MenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FigmaScience.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="100" d:DesignWidth="700"
+      Title="MenuPage">
+
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <Button Background="Orange" BorderBrush="Black" Height="60" HorizontalContentAlignment="Left" Width="105"
+                    Name="TestsBtn" Click="TestsBtn_Click"  Margin="10 0 20 0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+                <TextBlock Text="Тесты" FontSize="30" Foreground="Black" Margin="10 0 0 0">
+
+                </TextBlock>
+            </Button>
+            <Button Background="Orange" BorderBrush="Black" Height="60" HorizontalContentAlignment="Left" Width="110"
+                    Name="LessonsBtn" Click="LessonsBtn_Click"  Margin="0 0 20 0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+                <TextBlock Text="Уроки" FontSize="30" Foreground="Black" Margin="10 0 0 0">
+
+                </TextBlock>
+            </Button>
+            <Button Background="Orange" BorderBrush="Black" Height="60" HorizontalContentAlignment="Left" Width="290"
+                    Name="TestResultsBtn" Click="TestResultsBtn_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+                <TextBlock Text="Результаты тестов" FontSize="30" Foreground="Black" Margin="10 0 0 0">
+
+                </TextBlock>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>
