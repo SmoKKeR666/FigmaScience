@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FigmaScience.View.Windows"
         mc:Ignorable="d"
-        Title="EnterWindow" Height="600" Width="400" Background="LightBlue"
-        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Вход в ''FIGMA SCIENCE''" Height="600" Width="400" Background="LightBlue"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/Resources/Images/icons8-figma-500.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />

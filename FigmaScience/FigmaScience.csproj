@@ -231,6 +231,7 @@
       <DependentUpon>FigmaScienceModel.edmx</DependentUpon>
       <LastGenOutput>FigmaScienceModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Images\icons8-figma-500.png" />
     <Resource Include="Resources\Images\icons8-назад-100.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
